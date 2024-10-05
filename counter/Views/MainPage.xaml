@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="counter.Views.MainPage">
+
+    <Grid Padding="10">
+        <ScrollView>
+            <VerticalStackLayout
+            Padding="30,0"
+            Spacing="25">
+                <CollectionView x:Name="countersCollectionView" ItemsSource="{Binding Counters}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <ContentView>
+                                <StackLayout Padding="20">
+                                    <Frame BackgroundColor="{Binding coutnerColor}"
+                                           CornerRadius="10"
+                                           Padding="10"
+                                           HasShadow="True">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
+
+                                            <Label Text="{Binding name}"
+                                                   FontSize="24"
+                                                   HorizontalOptions="Center"
+                                                   VerticalOptions="Center" />
+
+                                            <StackLayout Grid.Row="1"
+                                                     Orientation="Horizontal"
+                                                     HorizontalOptions="Center"
+                                                     VerticalOptions="Center"
+                                                     Spacing="10"> 
+                                                <Button Text="+"
+                                                        Command="{Binding BindingContext.IncrementCommand, Source={x:Reference countersCollectionView}}"
+                                                        CommandParameter="{Binding .}"
+                                                        Background="Transparent"
+                                                        TextColor="{Binding secondaryColor}"
+                                                        FontSize="50"
+                                                        />
+                                                <Label Text="{Binding Value}"
+                                                        VerticalOptions="Center"/>
+                                                <Button Text="-"
+                                                        Command="{Binding BindingContext.DecrementCommand, Source={x:Reference countersCollectionView}}"
+                                                        CommandParameter="{Binding .}"
+                                                        Background="Transparent"
+                                                        TextColor="{Binding secondaryColor}"
+                                                        FontSize="50"
+                                                        />
+
+                                            </StackLayout>
+                                        </Grid>
+                                    </Frame>    
+                                </StackLayout>
+                            </ContentView>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+            </VerticalStackLayout>
+
+        </ScrollView>
+        <Button 
+            Text="New Counter"
+            FontSize="15"
+            Padding="10"
+            HeightRequest="100"
+            HorizontalOptions="End"
+            VerticalOptions="End"
+            x:Name="NewCounterBtn"
+            Clicked="NewCounterBtn_Clicked"
+            />
+
+    </Grid>
+
+</ContentPage>
+
+    
