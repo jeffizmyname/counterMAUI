@@ -5,11 +5,10 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:counter.Views"
     Shell.FlyoutBehavior="Disabled"
-    BackgroundColor="{DynamicResource Gray950}"
     Title="counter">
 
     <ShellContent
-        Title="Counters"
+        Title="Home"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
 

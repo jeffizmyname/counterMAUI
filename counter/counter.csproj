@@ -25,7 +25,7 @@
 		<ApplicationTitle>counter</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>com.stas.counter</ApplicationId>
+		<ApplicationId>com.companyname.counter</ApplicationId>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
@@ -58,21 +58,18 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Remove="Platforms\Android\mauicounter-firebase-adminsdk-z6cbb-d210d3dd25.json" />
-	  <None Remove="Resources\Raw\mauicounter-firebase-adminsdk-z6cbb-d210d3dd25.json" />
+	  <None Remove="mauicounter-firebase-adminsdk-z6cbb-d210d3dd25.json" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Content Include="Platforms\Android\mauicounter-firebase-adminsdk-z6cbb-d210d3dd25.json">
+	  <Content Include="mauicounter-firebase-adminsdk-z6cbb-d210d3dd25.json">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="AathifMahir.Maui.MauiIcons.Material" Version="3.0.0" />
 		<PackageReference Include="CommunityToolkit.Maui" Version="9.1.0" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.3.2" />
-		<PackageReference Include="FirebaseAdmin" Version="3.0.1" />
 		<PackageReference Include="FirebaseDatabase.net" Version="4.2.0" />
 		<PackageReference Include="Google.Cloud.Firestore" Version="3.9.0" />
 		<PackageReference Include="IconPacks.Material" Version="1.0.8732.5-build" />
@@ -83,19 +80,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiAsset Update="Resources\Raw\mauicounter-firebase-adminsdk-z6cbb-d210d3dd25.json">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	  </MauiAsset>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <MauiXaml Update="Popups\ConfirmationPopup.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Popups\NewCounterPopup.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\SingleCounterPage.xaml">
+	  <MauiXaml Update="NewCounterPopup.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

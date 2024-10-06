@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
 using CommunityToolkit.Maui;
-using MauiIcons.Material;
 
 namespace counter
 {
@@ -12,7 +11,6 @@ namespace counter
             builder
                 .UseMauiApp<App>()
                 .UseMauiCommunityToolkit()
-                .UseMaterialMauiIcons()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
