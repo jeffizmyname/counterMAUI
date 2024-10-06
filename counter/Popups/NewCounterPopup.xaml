@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+               Color="Transparent" 
+               x:Class="counter.Popups.NewCounterPopup">
+
+    <Frame 
+        BackgroundColor="{DynamicResource Gray950}" 
+        CornerRadius="20" 
+        HasShadow="True" 
+        MinimumHeightRequest="400"
+        Padding="20">
+
+        <Grid 
+            WidthRequest="800" 
+            RowSpacing="5" 
+            ColumnSpacing="10">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="310"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Label 
+                Grid.Row="0" 
+                Text="Create New Counter" 
+                FontSize="30" 
+                FontAttributes="Bold" 
+                HorizontalOptions="Center" 
+                Margin="0, 0, 0 ,15"
+                TextColor="{DynamicResource White}"/>
+
+            <Grid Grid.Row="1" ColumnSpacing="15">
+                
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="4*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+
+                <Entry 
+                    x:Name="CounterNameEntry" 
+                    Placeholder="Counter Name"
+                    VerticalOptions="Center"
+                    TextColor="{DynamicResource White}"
+                    BackgroundColor="Transparent" 
+                    Margin="5"
+                    Grid.Column="0"/>
+                <Entry 
+                    x:Name="StartCountervalue" 
+                    Placeholder="Base Counter Value" 
+                    Text="1"
+                    Keyboard="Numeric" 
+                    TextChanged="OnNumericEntryTextChanged"
+                    VerticalOptions="Center"
+                    TextColor="{DynamicResource White}"
+                    BackgroundColor="Transparent" 
+                    Margin="5"
+                    Grid.Column="1"/>
+                
+            </Grid>
+
+            <Grid Grid.Row="2" Padding="10" ColumnSpacing="25">
+                
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+
+                <VerticalStackLayout Grid.Column="0" Spacing="13">
+                    
+                    <Label 
+                        Text="Adjust Color" 
+                        FontSize="20" 
+                        FontAttributes="Bold" 
+                        Margin="0, 5"
+                        TextColor="{DynamicResource White}" />
+                    <Label Text="Red" TextColor="{DynamicResource White}" />
+                    <Slider 
+                        x:Name="RedSlider" 
+                        Minimum="0" 
+                        Maximum="255" 
+                        MinimumTrackColor="Red" 
+                        MaximumTrackColor="LightGray" 
+                        ValueChanged="OnSliderValueChanged" />
+                    <Label Text="Green" TextColor="{DynamicResource White}" />
+                    <Slider 
+                        x:Name="GreenSlider" 
+                        Minimum="0" 
+                        Maximum="255" 
+                        MinimumTrackColor="Green" 
+                        MaximumTrackColor="LightGray" 
+                        ValueChanged="OnSliderValueChanged" />
+                    <Label Text="Blue" TextColor="{DynamicResource White}" />
+                    <Slider 
+                        x:Name="BlueSlider" 
+                        Minimum="0" 
+                        Maximum="255" 
+                        MinimumTrackColor="Blue" 
+                        MaximumTrackColor="LightGray" 
+                        ValueChanged="OnSliderValueChanged" />
+                    
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Grid.Column="1" Padding="10" Spacing="5">
+                    
+                    <Label 
+                        x:Name="SelectedColorLabel" 
+                        Text="Selected Color RGB(0, 0, 0)" 
+                        FontSize="22" 
+                        FontAttributes="Bold" 
+                        HorizontalTextAlignment="Center"
+                        TextColor="{DynamicResource White}" />
+                    <BoxView 
+                        x:Name="SelectedColorBox" 
+                        HeightRequest="200" 
+                        WidthRequest="215"
+                        CornerRadius="10"/>
+                    
+                </VerticalStackLayout>
+            </Grid>
+
+            <Button 
+                Grid.Row="3" 
+                Text="Create" 
+                Clicked="OnSubmitClicked" 
+                BackgroundColor="{DynamicResource Green}" 
+                TextColor="White"
+                CornerRadius="5"
+                FontAttributes="Bold"
+                Margin="10, 0" 
+                VerticalOptions="End" />
+        </Grid>
+    </Frame>
+</toolkit:Popup>
