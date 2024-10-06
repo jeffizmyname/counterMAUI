@@ -362,3 +362,6 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 /counter/mauicounter-firebase-adminsdk-z6cbb-d210d3dd25.json
+/counter/Resources/Raw/mauicounter-firebase-adminsdk-z6cbb-d210d3dd25.json
+/counter/Platforms/Android/mauicounter-firebase-adminsdk-z6cbb-d210d3dd25.json
+/counter/Platforms/Android/google-services.json
