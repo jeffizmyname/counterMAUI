@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+               x:Class="counter.Popups.ConfirmationPopup"
+               Color="Transparent"
+                >
+    <Frame 
+        BackgroundColor="{DynamicResource Gray950}" 
+        CornerRadius="20" 
+        HasShadow="True" 
+        MinimumHeightRequest="100"
+        WidthRequest="500"
+        Padding="20">
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            
+            <Label
+                Text="Template"
+                TextColor="{DynamicResource White}"
+                FontAttributes="Bold" 
+                FontSize="25"
+                x:Name="QuestionLabel"
+                Grid.Row="0"
+                HorizontalOptions="Start"/>
+
+            <StackLayout
+                Grid.Row="1"    
+                Spacing="10"
+                Orientation="Horizontal">
+
+                <Button
+                    Text="Cancel"
+                    Background="Transparent"
+                    TextColor="{DynamicResource Gray200}"
+                    HorizontalOptions="EndAndExpand"
+                    Clicked="OnNoClicked"/>
+
+                <Button
+                    Text="Confirm"
+                    BackgroundColor="#ff3d3d"
+                    TextColor="#521616"
+                    HorizontalOptions="End"
+                    Clicked="OnYesClicked"/>
+
+            </StackLayout>
+
+
+
+
+
+        </Grid>
+
+
+    </Frame>
+</toolkit:Popup>
