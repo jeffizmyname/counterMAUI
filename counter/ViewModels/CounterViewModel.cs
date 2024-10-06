@@ -4,6 +4,9 @@ using System.ComponentModel;
 using counter.Models;
 using System.Diagnostics;
 using Google.Cloud.Firestore;
+using counter.Popups;
+using CommunityToolkit.Maui.Views;
+using counter.Views;
 
 namespace counter.ViewModels
 {
@@ -45,16 +48,40 @@ namespace counter.ViewModels
             ChganeValueInDb(counter.id, counter.Value);
         }
 
-        private void Reset(Counter counter)
+        private async void Reset(Counter counter)
         {
-            counter.Value = counter.defaultVal;
-            ChganeValueInDb(counter.id, counter.Value);
+            bool isConfirmed = await ConfirmationPopupResult("Do you realy want to Reset Counter to default value?");
+            if (isConfirmed)
+            {
+                counter.Value = counter.defaultVal;
+                ChganeValueInDb(counter.id, counter.Value);
+            }
         }
 
-        private void Delete(Counter counter)
+        private async void Delete(Counter counter)
         {
-            Counters.Remove(counter);
-            DeleteCounterFromDb(counter.id);
+            bool isConfirmed = await ConfirmationPopupResult("Do you realy want to delete this counter?");
+            if (isConfirmed)
+            {
+                Counters.Remove(counter);
+                DeleteCounterFromDb(counter.id);
+            }
+        }
+
+        private async Task<bool> ConfirmationPopupResult(string message)
+        {
+            var tcs = new TaskCompletionSource<bool>(); 
+
+            var popup = new ConfirmationPopup(message);
+            popup.OnResult += (isConfirmed) =>
+            {
+                tcs.SetResult(isConfirmed); 
+            };
+
+            var currentPage = Application.Current.MainPage;
+            await currentPage.ShowPopupAsync(popup);
+
+            return await tcs.Task;
         }
 
         private async void ChganeValueInDb(string id, int val) 

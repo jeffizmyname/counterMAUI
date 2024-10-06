@@ -1,57 +1,99 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="counter.Views.MainPage">
+             xmlns:mi="http://www.aathifmahir.com/dotnet/2022/maui/icons"
+             x:Class="counter.Views.MainPage"
+             x:Name="root">
 
-    <Grid Padding="10">
+    <Grid Padding="{OnPlatform WinUI=10, Android=5}" 
+          Margin="0"
+          VerticalOptions="Center" 
+          HorizontalOptions="Center">
         <ScrollView>
             <VerticalStackLayout
-            Padding="30,0"
-            Spacing="25">
+            Padding="{OnPlatform WinUI='30, 0', Android='5, 5'}"
+            Spacing="15">
                 <CollectionView x:Name="countersCollectionView" ItemsSource="{Binding Counters}">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <ContentView>
-                                <StackLayout Padding="20">
+                                <StackLayout Padding="10">
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer 
+                                            Tapped="CounterClicked" 
+                                            CommandParameter="{Binding .}"/>
+                                    </StackLayout.GestureRecognizers>
+                                    
                                     <Frame BackgroundColor="{Binding coutnerColor}"
                                            CornerRadius="10"
-                                           Padding="10"
+                                           Padding="20"
                                            HasShadow="True">
-                                        <Grid>
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="Auto" />
-                                                <RowDefinition Height="Auto" />
-                                            </Grid.RowDefinitions>
+                                        <StackLayout 
+                                            Orientation="Horizontal"
+                                            Spacing="10">
+
+                                            <Label Text="{Binding Value}"
+                                                   FontSize="24"
+                                                   VerticalOptions="Center"
+                                                   TextColor="{Binding secondaryColor}"/>
 
                                             <Label Text="{Binding name}"
                                                    FontSize="24"
+                                                   TextColor="{Binding secondaryColor}"
                                                    HorizontalOptions="Center"
                                                    VerticalOptions="Center" />
 
-                                            <StackLayout Grid.Row="1"
-                                                     Orientation="Horizontal"
-                                                     HorizontalOptions="Center"
-                                                     VerticalOptions="Center"
-                                                     Spacing="10"> 
-                                                <Button Text="+"
-                                                        Command="{Binding BindingContext.IncrementCommand, Source={x:Reference countersCollectionView}}"
-                                                        CommandParameter="{Binding .}"
-                                                        Background="Transparent"
-                                                        TextColor="{Binding secondaryColor}"
-                                                        FontSize="50"
-                                                        />
-                                                <Label Text="{Binding Value}"
-                                                        VerticalOptions="Center"/>
-                                                <Button Text="-"
-                                                        Command="{Binding BindingContext.DecrementCommand, Source={x:Reference countersCollectionView}}"
-                                                        CommandParameter="{Binding .}"
-                                                        Background="Transparent"
-                                                        TextColor="{Binding secondaryColor}"
-                                                        FontSize="50"
-                                                        />
+                                            <mi:MauiIcon Icon="{mi:Material Delete}"
+                                                         IconColor="{Binding secondaryColor}"
+                                                         VerticalOptions="Center"
+                                                         HorizontalOptions="EndAndExpand">
+                                                <mi:MauiIcon.GestureRecognizers>
+                                                    <TapGestureRecognizer 
+                                                      Command="{Binding BindingContext.DeleteCommand, Source={x:Reference countersCollectionView}}"
+                                                      CommandParameter="{Binding .}"/>
+                                                </mi:MauiIcon.GestureRecognizers>
+                                            </mi:MauiIcon>
 
-                                            </StackLayout>
-                                        </Grid>
+                                            <mi:MauiIcon 
+                                                Icon="{mi:Material Replay}"
+                                                IconColor="{Binding secondaryColor}"
+                                                VerticalOptions="Center"
+                                                HorizontalOptions="End"
+                                                >
+                                                <mi:MauiIcon.GestureRecognizers>
+                                                    <TapGestureRecognizer 
+                                                        Command="{Binding BindingContext.ResetCommand, Source={x:Reference countersCollectionView}}"
+                                                        CommandParameter="{Binding .}"/>
+                                                </mi:MauiIcon.GestureRecognizers>
+                                            </mi:MauiIcon>
+
+                                            <mi:MauiIcon 
+                                                Icon="{mi:Material Remove}"
+                                                IconColor="{Binding secondaryColor}"
+                                                VerticalOptions="Center"
+                                                HorizontalOptions="End"
+                                                >
+                                                <mi:MauiIcon.GestureRecognizers>
+                                                    <TapGestureRecognizer 
+                                                        Command="{Binding BindingContext.DecrementCommand, Source={x:Reference countersCollectionView}}"
+                                                        CommandParameter="{Binding .}"/>
+                                                </mi:MauiIcon.GestureRecognizers>
+                                            </mi:MauiIcon>
+
+                                            <mi:MauiIcon 
+                                                Icon="{mi:Material Add}"
+                                                IconColor="{Binding secondaryColor}"
+                                                VerticalOptions="Center"
+                                                HorizontalOptions="End"
+                                                >
+                                                <mi:MauiIcon.GestureRecognizers>
+                                                    <TapGestureRecognizer 
+                                                        Command="{Binding BindingContext.IncrementCommand, Source={x:Reference countersCollectionView}}"
+                                                        CommandParameter="{Binding .}"/>
+                                                </mi:MauiIcon.GestureRecognizers>
+                                            </mi:MauiIcon>
+
+                                        </StackLayout>
                                     </Frame>    
                                 </StackLayout>
                             </ContentView>
