@@ -8,4 +8,6 @@ namespace counter
     public class MainActivity : MauiAppCompatActivity
     {
     }
+
+
 }
