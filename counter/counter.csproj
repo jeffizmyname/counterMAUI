@@ -86,6 +86,9 @@
 	  <MauiAsset Update="Resources\Raw\mauicounter-firebase-adminsdk-z6cbb-d210d3dd25.json">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </MauiAsset>
+	  <MauiAsset Update="Resources\Raw\mauicounter-firebase.json">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </MauiAsset>
 	</ItemGroup>
 
 	<ItemGroup>
