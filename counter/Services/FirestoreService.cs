@@ -25,7 +25,7 @@ public partial class FirestoreService
 
     private async void InitializeFirestoreAndroid()
     {
-        var path = await FileSystem.OpenAppPackageFileAsync("mauicounter-firebase-adminsdk-z6cbb-d210d3dd25.json");
+        var path = await FileSystem.OpenAppPackageFileAsync("mauicounter-firebase.json");
         var reader = new StreamReader(path);
         var contents = reader.ReadToEnd();
 
@@ -35,7 +35,7 @@ public partial class FirestoreService
 
     private void InitializeFirestoreForWindows()
     {
-        string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "mauicounter-firebase-adminsdk-z6cbb-d210d3dd25.json");
+        string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "mauicounter-firebase.json");
         Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", path);
         db = FirestoreDb.Create("mauicounter");
     }
