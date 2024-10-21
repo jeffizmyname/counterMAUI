@@ -17,7 +17,6 @@ namespace counter.Models
     
         public event PropertyChangedEventHandler PropertyChanged;
         private int _value;
-
         public string id { get; set; }
         public string name { get; set; }
         public int defaultVal { get; set; } = 0;
@@ -72,15 +71,32 @@ namespace counter.Models
                 factor = Math.Clamp(1 - ((float)luminance * factorLight * 1), 0f, 1f);
                 Trace.WriteLine("light " + name + " " + luminance);
             }
-            else if(luminance < 0.01)
+            else if (luminance == 0)
             {
-                factor = Math.Clamp(1 + ((1 - (float)luminance) * factorDark * 8), 0f, 8f);
+                Trace.WriteLine("dark " + name + " " + luminance);
+                return new Color(255, 255, 255, color.Alpha);
+
+            }
+            else if (luminance < 0.02 && luminance > 0.01)
+            {
+                factor = Math.Clamp(1 + ((1 - (float)luminance) * factorDark * 60), 0f, 60f);
+                Trace.WriteLine("dark0 " + name + " " + luminance);
+            }
+            else if (luminance < 0.01 && luminance >= 0.002)
+            {
+                factor = Math.Clamp(1 + ((1 - (float)luminance) * factorDark * 10), 0f, 10f);
                 Trace.WriteLine("dark1 " + name + " " + luminance);
+
+            }
+            else if (luminance < 0.002)
+            {
+                factor = Math.Clamp(1 + ((1 - (float)luminance) * factorDark * 50), 0f, 50f);
+                Trace.WriteLine("dark2 " + name + " " + luminance);
             }
             else
             {
                 factor = Math.Clamp(1 + ((1 - (float)luminance) * factorDark * 5), 0f, 5f);
-                Trace.WriteLine("dark2 " + name + " " + luminance);
+                Trace.WriteLine("dark3 " + name + " " + luminance);
             }
 
             float red = Math.Clamp(color.Red * factor, 0f, 1f);
