@@ -4,7 +4,6 @@ using counter.Popups;
 using counter.ViewModels;
 using Google.Cloud.Firestore;
 using MauiIcons.Core;
-using System.Diagnostics;
 
 namespace counter.Views
 {
@@ -18,14 +17,25 @@ namespace counter.Views
             InitializeComponent();
             _ = new MauiIcon();
 
-            var shell = Application.Current.MainPage as Shell;
-
+#if !ANDROID
+            this.SizeChanged += MainPage_SizeChanged;
+#endif
             FirestoreService services = new FirestoreService();
             db = services.db;
 
             _counterViewModel = new CounterViewModel(db);
             BindingContext = _counterViewModel;
         }
+
+        private void MainPage_SizeChanged(object? sender, EventArgs e)
+        {
+            double pageWidth = this.Width;
+            double minItemWidth = 500; 
+            int numberOfColumns = (int)(pageWidth / minItemWidth);
+            numberOfColumns = Math.Max(1, numberOfColumns);
+            var gridItemsLayout = (GridItemsLayout)countersCollectionView.ItemsLayout;
+            gridItemsLayout.Span = numberOfColumns;
+           }
 
         private void NewCounterBtn_Clicked(object sender, EventArgs e)
         {
