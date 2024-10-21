@@ -10,10 +10,10 @@
         CornerRadius="20" 
         HasShadow="True" 
         MinimumHeightRequest="100"
-        WidthRequest="500"
+        WidthRequest="{OnPlatform WinUI=500, Android=400}"
         Padding="20">
 
-        <Grid>
+        <Grid RowSpacing="5">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
