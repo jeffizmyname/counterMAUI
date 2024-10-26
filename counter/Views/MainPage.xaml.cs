@@ -35,7 +35,11 @@ namespace counter.Views
             numberOfColumns = Math.Max(1, numberOfColumns);
             var gridItemsLayout = (GridItemsLayout)countersCollectionView.ItemsLayout;
             gridItemsLayout.Span = numberOfColumns;
-           }
+            if(pageWidth < minItemWidth*2-1)
+            {
+                //this.WidthRequest = minItemWidth * 2 - 1;
+            } 
+        }
 
         private void NewCounterBtn_Clicked(object sender, EventArgs e)
         {
