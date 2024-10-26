@@ -60,7 +60,7 @@ namespace counter.Models
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        Color CreateSecondaryColor(Color color, float factorLight, float factorDark)
+        Color CreateSecondaryColor(Color color, float lightFactorMultiplier, float darkFactorMultiplier)
         {
             double luminance = (0.299 * color.Red + 0.587 * color.Green + 0.114 * color.Blue);
 
@@ -68,35 +68,33 @@ namespace counter.Models
 
             if (luminance > 0.3)
             {
-                factor = Math.Clamp(1 - ((float)luminance * factorLight * 1), 0f, 1f);
-                Trace.WriteLine("light " + name + " " + luminance);
+                factor = Math.Clamp(1 - ((float)luminance * lightFactorMultiplier), 0f, 1f);
+                Trace.WriteLine("Light color " + luminance);
             }
             else if (luminance == 0)
             {
-                Trace.WriteLine("dark " + name + " " + luminance);
-                return new Color(255, 255, 255, color.Alpha);
-
+                Trace.WriteLine("Color is black: " + luminance);
+                return new Color(255, 255, 255, color.Alpha); 
             }
             else if (luminance < 0.02 && luminance > 0.01)
             {
-                factor = Math.Clamp(1 + ((1 - (float)luminance) * factorDark * 60), 0f, 60f);
-                Trace.WriteLine("dark0 " + name + " " + luminance);
+                factor = Math.Clamp(1 + ((1 - (float)luminance) * darkFactorMultiplier * 60), 0f, 60f);
+                Trace.WriteLine("Medium dark " + luminance);
             }
             else if (luminance < 0.01 && luminance >= 0.002)
             {
-                factor = Math.Clamp(1 + ((1 - (float)luminance) * factorDark * 10), 0f, 10f);
-                Trace.WriteLine("dark1 " + name + " " + luminance);
-
+                factor = Math.Clamp(1 + ((1 - (float)luminance) * darkFactorMultiplier * 10), 0f, 10f);
+                Trace.WriteLine("Dark color " + luminance);
             }
             else if (luminance < 0.002)
             {
-                factor = Math.Clamp(1 + ((1 - (float)luminance) * factorDark * 50), 0f, 50f);
-                Trace.WriteLine("dark2 " + name + " " + luminance);
+                factor = Math.Clamp(1 + ((1 - (float)luminance) * darkFactorMultiplier * 50), 0f, 50f);
+                Trace.WriteLine("Very dark color " + luminance);
             }
             else
             {
-                factor = Math.Clamp(1 + ((1 - (float)luminance) * factorDark * 5), 0f, 5f);
-                Trace.WriteLine("dark3 " + name + " " + luminance);
+                factor = Math.Clamp(1 + ((1 - (float)luminance) * darkFactorMultiplier * 5), 0f, 5f);
+                Trace.WriteLine("Dark color " + luminance);
             }
 
             float red = Math.Clamp(color.Red * factor, 0f, 1f);
