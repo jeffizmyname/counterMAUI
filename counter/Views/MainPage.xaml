@@ -38,6 +38,10 @@
                                 <Frame
                                     Padding="20"
                                     BackgroundColor="{Binding coutnerColor}"
+                                    MinimumWidthRequest="450"
+                                    MaximumWidthRequest="1000"
+                                    x:Name="CounterFrame"
+                                    BorderColor="Transparent"
                                     CornerRadius="10"
                                     HasShadow="True"
                                     ZIndex="10">
@@ -62,7 +66,9 @@
                                             Text="{Binding name}"
                                             TextColor="{Binding secondaryColor}"
                                             VerticalOptions="Center"
-                                            MaximumWidthRequest="{OnPlatform Android=150, WinUI=1000}"/>
+                                            MaximumWidthRequest="{OnPlatform Android=150, WinUI=200}"
+                                            MaxLines="1"
+                                            LineBreakMode="TailTruncation"/>
 
                                         <!--  Delete button  -->
                                         <mi:MauiIcon
