@@ -14,7 +14,10 @@
         HasShadow="True"
         MinimumHeightRequest="400"
         WidthRequest="{OnPlatform Android=350,
-                                  WinUI=800}">
+                                  WinUI=800}"
+        HeightRequest="{OnPlatform Android=550}">
+
+
 
         <Grid
             ColumnSpacing="10"
@@ -26,7 +29,7 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="310" />
-                <RowDefinition Height="Auto" />
+                <RowDefinition Height="70" />
             </Grid.RowDefinitions>
 
             <Label
@@ -41,8 +44,8 @@
             <Grid Grid.Row="1" ColumnSpacing="15">
 
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="4*" />
-                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="{OnPlatform WinUI=4*, Android=2`*}" />
+                    <ColumnDefinition Width="{OnPlatform WinUI=1*, Android=1*}" />
                 </Grid.ColumnDefinitions>
 
                 <Entry
@@ -67,17 +70,16 @@
 
             </Grid>
 
+
+
             <Grid
                 Grid.Row="2"
                 Padding="10"
-                ColumnSpacing="25">
+                ColumnSpacing="25"
+                x:Name="GridColor">
 
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="5*" />
-                    <ColumnDefinition Width="2*" />
-                </Grid.ColumnDefinitions>
 
-                <VerticalStackLayout Grid.Column="0" Spacing="13">
+                <VerticalStackLayout Grid.Column="0" Grid.Row="0" Spacing="13">
 
                     <Label
                         Margin="0,5"
@@ -121,14 +123,15 @@
                     <Label
                         x:Name="SelectedColorLabel"
                         FontAttributes="Bold"
-                        FontSize="22"
+                        FontSize="{OnPlatform WinUI=24,  Android=22}"
                         HorizontalTextAlignment="Center"
-                        Text="Selected Color RGB(0, 0, 0)"
-                        TextColor="{DynamicResource White}" />
+                        Text="Selected Color"
+                        TextColor="{DynamicResource White}"
+                        VerticalOptions="Center"/>
                     <BoxView
                         x:Name="SelectedColorBox"
                         CornerRadius="10"
-                        HeightRequest="200"
+                        HeightRequest="{OnPlatform Android=50, WinUI=220}"
                         WidthRequest="215" />
 
                 </VerticalStackLayout>
@@ -145,5 +148,6 @@
                 TextColor="White"
                 VerticalOptions="End" />
         </Grid>
+
     </Frame>
 </toolkit:Popup>
