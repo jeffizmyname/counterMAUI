@@ -15,7 +15,7 @@ namespace counter.Models
     public class Counter : INotifyPropertyChanged
     {
     
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;
         private int _value;
         public string id { get; set; }
         public string name { get; set; }

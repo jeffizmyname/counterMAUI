@@ -2,26 +2,19 @@
 using Android.Content;
 using Android.Runtime;
 #endif
-using Google.Apis.Auth.OAuth2;
 using Google.Cloud.Firestore;
 using Google.Cloud.Firestore.V1;
-using Microsoft.Maui.ApplicationModel;
-using System.Diagnostics;
-using System.Reflection;
-using FirebaseAdmin;
-using System.IO;
 public partial class FirestoreService
 {
-    public FirestoreDb db;
+    public FirestoreDb? db;
 
-    public FirestoreService()
-    {
+    public FirestoreService() =>
 #if ANDROID
         InitializeFirestoreAndroid();
 #else
         InitializeFirestoreForWindows();
 #endif
-    }
+
 
     private async void InitializeFirestoreAndroid()
     {

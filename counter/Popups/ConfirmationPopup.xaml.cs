@@ -5,7 +5,7 @@ namespace counter.Popups;
 public partial class ConfirmationPopup : Popup
 {
 
-    public event Action<bool> OnResult;
+    public event Action<bool>? OnResult;
     public ConfirmationPopup(string Question)
 	{
 		InitializeComponent();

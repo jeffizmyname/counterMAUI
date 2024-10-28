@@ -21,10 +21,17 @@ namespace counter.Views
             this.SizeChanged += MainPage_SizeChanged;
 #endif
             FirestoreService services = new FirestoreService();
-            db = services.db;
 
-            _counterViewModel = new CounterViewModel(db);
-            BindingContext = _counterViewModel;
+            if (services.db != null)
+            {
+                db = services.db;
+                _counterViewModel = new CounterViewModel(db);
+                BindingContext = _counterViewModel;
+            }
+            else
+            {
+                throw new Exception("Error failed to initiate database Services");
+            }
         }
 
         private void MainPage_SizeChanged(object? sender, EventArgs e)

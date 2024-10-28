@@ -80,8 +80,19 @@ namespace counter.ViewModels
                 tcs.SetResult(isConfirmed); 
             };
 
-            var currentPage = Application.Current.MainPage;
-            await currentPage.ShowPopupAsync(popup);
+
+            Page? currentPage = null;
+
+            if (Application.Current != null)
+            {
+                currentPage = Application.Current.MainPage;
+            }
+
+            if (currentPage != null)
+            {
+                await currentPage.ShowPopupAsync(popup);
+            }
+
 
             return await tcs.Task;
         }

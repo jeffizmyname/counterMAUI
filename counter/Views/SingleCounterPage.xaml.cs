@@ -9,7 +9,7 @@ public partial class SingleCounterPage : ContentPage
 {
     private Counter currentCounter;
     private CounterViewModel _viewModel;
-    Shell shell = Application.Current.MainPage as Shell;
+    Shell shell;
     public SingleCounterPage(Counter counter, CounterViewModel viewModel)
     {
         InitializeComponent();
@@ -18,8 +18,16 @@ public partial class SingleCounterPage : ContentPage
         currentCounter = counter;
         _viewModel = viewModel;
         BindingContext = counter;
-        Shell.SetBackgroundColor(shell, currentCounter.coutnerColor);
-        Shell.SetTitleColor(shell, currentCounter.secondaryColor);
+        if(Application.Current?.MainPage != null)
+        {
+            shell = Application.Current.MainPage as Shell ?? throw new Exception("Error sth went wrong :<");
+            Shell.SetBackgroundColor(shell, currentCounter.coutnerColor);
+            Shell.SetTitleColor(shell, currentCounter.secondaryColor);
+        } else
+        {
+            throw new Exception("Error sth went wrong :<");
+        }
+
     }
 
     private void IncrementClicked(object sender, TappedEventArgs e)
@@ -41,8 +49,15 @@ public partial class SingleCounterPage : ContentPage
 
     protected override bool OnBackButtonPressed()
     {
-        Shell.SetBackgroundColor(shell, (Color)Application.Current.Resources["Gray950"]);
-        Shell.SetTitleColor(shell, (Color)Application.Current.Resources["Primary"]);
+        if (Application.Current != null) {
+            Shell.SetBackgroundColor(shell, (Color)Application.Current.Resources["Gray950"]);
+            Shell.SetTitleColor(shell, (Color)Application.Current.Resources["Primary"]);
+        }
+        else
+        {
+            throw new Exception("Error sth went wrong :<");
+        }
+
         return false; 
     }
 }
