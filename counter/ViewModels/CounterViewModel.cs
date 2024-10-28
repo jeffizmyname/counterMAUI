@@ -38,8 +38,10 @@ namespace counter.ViewModels
 
         private void Increment(Counter counter)
         {
+            Debug.WriteLine("Increment Started");
             counter.Value++;
             ChganeValueInDb(counter.id, counter.Value);
+            Debug.WriteLine("Increment ended");
         }
 
         private void Decrement(Counter counter)
